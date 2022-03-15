@@ -1,0 +1,28 @@
+.container {
+  position: relative;
+}
+
+nav {
+  display: flex;
+  position: absolute;
+  height: 120px;
+  width: 100%;
+  background-color: #4056A1;
+  color: #FFFFFF;
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-family: 'Bungee', cursive;
+}
+
+.navbar-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: center;
+  z-index: 9;
+}
