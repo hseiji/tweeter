@@ -1,0 +1,48 @@
+.new-tweet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+label {
+  display: flex;
+  justify-content: center;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+textarea {
+  height:100px;
+  width: 400px;
+  margin: 15px;
+  border: none;
+  border-bottom: solid 2px;
+  background-color: #d8edca;
+  background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");  
+  outline: none;
+}
+
+.bottom-tweet {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-tweet {
+  font-family: 'Bungee', cursive;
+  background-color: #4056A1;
+  color: #FFFFFF;
+  border: none;
+}
+
+output {
+  font-family: 'Bungee', cursive;
+  color: gray;
+  justify-content: right;
+}
