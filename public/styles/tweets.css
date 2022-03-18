@@ -1,0 +1,42 @@
+.tweet-container {
+  border: black solid 2px;
+  margin: 50px;
+}
+
+.tweet-container:hover {
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+
+article.tweet p {
+  margin: 24px;
+}
+
+article.tweet header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+}
+
+article.tweet header .left {
+  display: flex;
+  align-items: center;
+}
+
+article.tweet header .left img {
+  margin-right: 10px;
+}
+
+article.tweet footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+article.tweet footer i {
+  margin-left: 5px;
+}
+
+article.tweet footer i:hover {
+  color: yellow;
+}
