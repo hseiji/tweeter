@@ -39,10 +39,18 @@ $(document).ready(function() {
     })
     .then((res) => {
       renderTweets(res);
+      $("#tweet-error").hide();
     });
   }
 
   loadTweets();
+
+  // Escape function to avoid code injection for example: <script>$("body").empty();</script>
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
+  };
 
   // function that creates the template literals for each specific tweet
   const createTweetElement = function(tweetData) {
@@ -53,7 +61,7 @@ $(document).ready(function() {
           <div class="left"><img src=${tweetData["user"].avatars} alt=""><span>${tweetData["user"].name}</span></div>
           <div class="right"><span>${tweetData["user"].handle}</span></div>
         </header>
-        <p>${tweetData["content"].text}</p>
+        <p>${escape(tweetData["content"].text)}</p>
         <footer>
           <span>${timePassed}</span><span><i class="fa-solid fa-flag"></i><i class="fa-solid fa-retweet"></i><i  class="fa-solid fa-heart"></i></span>
         </footer>
@@ -66,7 +74,7 @@ $(document).ready(function() {
   const renderTweets = function(data) {
     data.forEach(element => {
       const $tweet = createTweetElement(element);
-      $(".tweet-container").append($tweet);
+      $(".tweet-container").prepend($tweet);
     });
   };
 
@@ -77,13 +85,18 @@ $(document).ready(function() {
     const tweetContent = $("#tweet-text").val(); // Checking the textarea content
     console.log(tweetContent);
 
+    // Hiding error element
+
+
     // Edge cases: Validation
     if (tweetContent === "" || tweetContent === null) {
-      alert("Please type something before submitting...");
+      $("#tweet-error").text("Please type something before submitting...");
+      $("#tweet-error").show();
       return;
     }
     if (tweetContent.length > 140) {
-      alert("Please notice your tweet is too long!");
+      $("#tweet-error").text("Please note, your tweet is too long! Maximum characters of 140");
+      $("#tweet-error").show();
       return;      
     }
 
