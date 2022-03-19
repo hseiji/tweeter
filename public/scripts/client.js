@@ -55,5 +55,23 @@ const renderTweets = function(data) {
   });
 };
 
+// AJAX to POST tweets on route /tweets
+$("#tweet-submit").submit(function(event) {
+  event.preventDefault();
+
+  alert("Handler called");
+  const serializedData = $(this).serialize();
+  console.log(serializedData);
+
+  $.post('/tweets', serializedData);
+
+  // $.ajax('more-posts.html', { method: 'GET' })
+  // .then(function (morePostsHtml) {
+  //   console.log('Success: ', morePostsHtml);
+  //   $button.replaceWith(morePostsHtml);
+  // });  
+});
+
+
 renderTweets(data);
 });
