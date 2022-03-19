@@ -5,9 +5,11 @@
 
 nav {
   display: flex;
-  position: absolute;
-  height: 120px;
+  /* position: absolute; */
+  position: fixed;
+  top: 0;
   width: 100%;
+  height: 120px;
   background-color: #4056A1;
   color: #FFFFFF;
   padding-right: 1.5em;

@@ -9,5 +9,7 @@ $(document).ready(function() {
       $("output").css({"color": "gray"});
     }
     $("output").html(total);
-  })
+  });
+
+  
 });
