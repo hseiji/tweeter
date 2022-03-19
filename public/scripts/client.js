@@ -30,48 +30,69 @@ const data = [
 ]
 
 $(document).ready(function() {
+  // function that GET all tweets from route /tweets/ using AJAX
+  const loadTweets = () => {
+    $(".tweet-container").empty();
+    $.ajax({
+      method: 'GET',
+      url:'/tweets/'
+    })
+    .then((res) => {
+      renderTweets(res);
+    });
+  }
 
-const createTweetElement = function(tweetData) {
-  let $tweet = $(`
-    <article class="tweet">
-      <header>
-        <div class="left"><img src=${tweetData["user"].avatars} alt=""><span>${tweetData["user"].name}</span></div>
-        <div class="right"><span>${tweetData["user"].handle}</span></div>
-      </header>
-      <p>${tweetData["content"].text}</p>
-      <footer>
-        <span>${tweetData["created_at"]}</span><span><i class="fa-solid fa-flag"></i><i class="fa-solid fa-retweet"></i><i  class="fa-solid fa-heart"></i></span>
-      </footer>
-    </article>
-  `);
+  loadTweets();
 
-  return $tweet;
-};
+  // function that creates the template literals for each specific tweet
+  const createTweetElement = function(tweetData) {
+    const timePassed = timeago.format(tweetData["created_at"]);
+    let $tweet = $(`
+      <article class="tweet">
+        <header>
+          <div class="left"><img src=${tweetData["user"].avatars} alt=""><span>${tweetData["user"].name}</span></div>
+          <div class="right"><span>${tweetData["user"].handle}</span></div>
+        </header>
+        <p>${tweetData["content"].text}</p>
+        <footer>
+          <span>${timePassed}</span><span><i class="fa-solid fa-flag"></i><i class="fa-solid fa-retweet"></i><i  class="fa-solid fa-heart"></i></span>
+        </footer>
+      </article>
+    `);
+    return $tweet;
+  };
 
-const renderTweets = function(data) {
-  data.forEach(element => {
-    const $tweet = createTweetElement(element);
-    $(".tweet-container").append($tweet);
+  // function that renders all tweets (by appending the mark up html) on index.html
+  const renderTweets = function(data) {
+    data.forEach(element => {
+      const $tweet = createTweetElement(element);
+      $(".tweet-container").append($tweet);
+    });
+  };
+
+  // AJAX to POST tweets on route /tweets
+  $("#tweet-submit").submit(function(event) {
+    event.preventDefault();
+    const serializedData = $(this).serialize();
+    const tweetContent = $("#tweet-text").val(); // Checking the textarea content
+    console.log(tweetContent);
+
+    // Edge cases: Validation
+    if (tweetContent === "" || tweetContent === null) {
+      alert("Please type something before submitting...");
+      return;
+    }
+    if (tweetContent.length > 140) {
+      alert("Please notice your tweet is too long!");
+      return;      
+    }
+
+    $.post('/tweets', serializedData)
+      .then(() => {
+        loadTweets();
+        $("#tweet-text").val("") // Clears the textarea
+      });
   });
-};
 
-// AJAX to POST tweets on route /tweets
-$("#tweet-submit").submit(function(event) {
-  event.preventDefault();
-
-  alert("Handler called");
-  const serializedData = $(this).serialize();
-  console.log(serializedData);
-
-  $.post('/tweets', serializedData);
-
-  // $.ajax('more-posts.html', { method: 'GET' })
-  // .then(function (morePostsHtml) {
-  //   console.log('Success: ', morePostsHtml);
-  //   $button.replaceWith(morePostsHtml);
-  // });  
-});
-
-
-renderTweets(data);
+// renderTweets(data);
 });
