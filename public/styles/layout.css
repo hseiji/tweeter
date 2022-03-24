@@ -16,19 +16,32 @@ html {
 
 body {
   display: flex;
-  flex-direction: column;
   width: 100%;
   color: #545149;
   background-color: #d8edca;
   background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
   font-size: 24px;
   font-family: 'Source Sans Pro', sans-serif;
-  align-items: center;
   justify-content: center;
 }
 
 main {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  /* align-items: center; */
+  width: 50%;
+}
+
+
+/* Tablet breakpoint */
+@media only screen and (max-width: 768px) {
+  /* Write CSS rules that target Tablets screen sizes upwards - including desktops */
+  body {
+    flex-direction: column;
+  }
+
+  main {
+    width: 100%;
+  }
+
 }

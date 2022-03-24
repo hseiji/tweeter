@@ -53,3 +53,11 @@ output {
   margin-bottom: 10px;
   padding: 5px;
 }
+
+/* Tablet breakpoint (min-width = everything greater than 768px do something */
+@media only screen and (min-width: 768px) {
+  #main-container {
+    margin-top: 200px;
+  }
+
+}

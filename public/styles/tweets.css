@@ -1,6 +1,14 @@
+.tweet-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 article.tweet {
   border: black solid 2px;
-  margin: 50px;
+  width: 90%;
+  margin-bottom: 50px;
 }
 
 article.tweet:hover {
@@ -25,6 +33,10 @@ article.tweet header .left {
 
 article.tweet header .left img {
   margin-right: 10px;
+}
+
+article.tweet p {
+  overflow-wrap: break-word;
 }
 
 article.tweet footer {
