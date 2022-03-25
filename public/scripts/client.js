@@ -85,9 +85,6 @@ $(document).ready(function() {
     const tweetContent = $("#tweet-text").val(); // Checking the textarea content
     console.log(tweetContent);
 
-    // Hiding error element
-
-
     // Edge cases: Validation
     if (tweetContent === "" || tweetContent === null) {
       $("#tweet-error").text("Please type something before submitting...");
@@ -104,6 +101,7 @@ $(document).ready(function() {
       .then(() => {
         loadTweets();
         $("#tweet-text").val("") // Clears the textarea
+        $("output").html("140");
       });
   });
 
